@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Smart Civic User Deadline</title>
+<style>
+body{font-family:Arial;background:#0f172a;height:100vh;display:flex;justify-content:center;align-items:center;margin:0}
+.box{background:white;width:550px;padding:25px;border-radius:20px}
+h1{text-align:center;color:#2563eb}
+input,textarea,select,button{width:95%;padding:12px;margin:8px;border-radius:10px}
+button{background:#2563eb;color:white;border:0;cursor:pointer}
+.card{background:#eef2ff;padding:15px;margin-top:15px;border-radius:12px}
+.pending{color:#d97706;font-weight:bold}
+.done{color:green;font-weight:bold}
+.progress{color:#2563eb;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="box">
+
+<h1>🏙 Smart Civic Complaint</h1>
+
+<input id="name" placeholder="Citizen Name">
+
+<textarea id="issue" placeholder="Enter Complaint"></textarea>
+
+<h3>Set Deadline</h3>
+
+<input id="value" type="number" placeholder="Enter time">
+
+<select id="unit">
+<option>Minutes</option>
+<option>Hours</option>
+<option>Days</option>
+<option>Weeks</option>
+</select>
+
+<button onclick="submitComplaint()">Submit Complaint</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+let id=9000;
+
+function submitComplaint(){
+
+id++;
+
+let value=document.getElementById("value").value;
+let unit=document.getElementById("unit").value;
+
+document.getElementById("result").innerHTML=`
+
+<div class="card">
+
+<h3>✅ Complaint Received</h3>
+
+Complaint ID: CIV${id}<br><br>
+
+Issue: ${issue.value}<br><br>
+
+Deadline:
+${value} ${unit}
+
+<hr>
+
+<h3>Status</h3>
+
+<p id="status" class="pending">⏳ Pending / Waiting</p>
+
+<p id="time">Deadline Running...</p>
+
+</div>`;
+
+let demo=10000;
+
+setTimeout(()=>{
+document.getElementById("status").innerHTML="🔄 Work Finishing";
+document.getElementById("status").className="progress";
+document.getElementById("time").innerHTML="Near Deadline";
+},demo/2);
+
+
+setTimeout(()=>{
+
+document.getElementById("status").innerHTML="🎉 Successfully Completed";
+document.getElementById("status").className="done";
+document.getElementById("time").innerHTML="Deadline Completed ✅";
+
+},demo);
+
+}
+</script>
+
+</body>
+</html>
